@@ -218,7 +218,7 @@ header{background:var(--orman);color:var(--krem);position:sticky;top:0;z-index:2
 .contact .bars{margin-bottom:28px}
 .mail{display:inline-block;margin-top:32px;font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);color:var(--krem);text-decoration:none;border-bottom:2px solid var(--kehribar);padding-bottom:2px;overflow-wrap:anywhere}
 .mail:hover{color:var(--kehribar)}
-form{background:var(--orman-2);border-radius:24px;padding:32px;display:grid;gap:16px}
+form{position:relative;background:var(--orman-2);border-radius:24px;padding:32px;display:grid;gap:16px}
 .field{display:grid;gap:6px}
 label{font-size:15px;font-weight:500;color:rgba(243,235,221,.9)}
 label .req{color:var(--kehribar)}
@@ -231,6 +231,10 @@ textarea{min-height:120px;resize:vertical}
 form button{font:inherit;font-size:18px;font-weight:600;background:var(--kiremit-k);color:#fff;border:0;border-radius:999px;padding:15px;min-height:52px;cursor:pointer;margin-top:6px;transition:background .2s,transform .2s var(--ease)}
 form button:hover{background:#9E4426}
 form button:active{transform:scale(.98)}
+form button[disabled]{opacity:.65;cursor:progress}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.note.ok{color:var(--krem);font-size:16px;font-weight:500}
+.note.fail{color:var(--kiremit-a);font-size:15px}
 .note{margin:0;font-size:14px;color:rgba(243,235,221,.72)}
 @media (max-width:900px){
   .contact{padding:80px 0}
@@ -492,7 +496,13 @@ footer .foot-link:hover{color:var(--kehribar)}
         <p class="err" id="f-ad-err" role="alert"></p>
       </div>
       <div class="field"><label for="f-firma">Firma</label><input id="f-firma" name="firma" autocomplete="organization"></div>
+      <div class="field">
+        <label for="f-eposta">E-posta <span class="req" aria-hidden="true">*</span></label>
+        <input id="f-eposta" name="eposta" type="email" required autocomplete="email" inputmode="email" aria-describedby="f-eposta-err">
+        <p class="err" id="f-eposta-err" role="alert"></p>
+      </div>
       <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+      <div class="hp" aria-hidden="true"><label for="f-web">Web sitesi</label><input id="f-web" name="web" tabindex="-1" autocomplete="off"></div>
       <div class="field"><label for="f-hizmet">Hizmet</label>
         <select id="f-hizmet" name="hizmet">
           <option>Ofis temizliği</option><option>Teknik bakım</option><option>Karşılama ve giriş görevlisi</option><option>Destek personeli</option><option>Bitki bakımı</option><option>Özel temizlik</option><option>Birden fazla hizmet</option>
@@ -500,7 +510,7 @@ footer .foot-link:hover{color:var(--kehribar)}
       </div>
       <div class="field"><label for="f-mesaj">Mesajınız</label><textarea id="f-mesaj" name="mesaj" placeholder="Lokasyon, metrekare, personel sayısı…"></textarea></div>
       <button type="submit">Teklif iste</button>
-      <p class="note" id="f-durum" aria-live="polite">Gönder'e bastığınızda e-posta uygulamanız bu bilgilerle açılır.</p>
+      <p class="note" id="f-durum" aria-live="polite"></p>
       <p class="note">Paylaştığınız bilgiler yalnızca teklif hazırlamak için kullanılır. Ayrıntılar: <a href="/kvkk">KVKK Aydınlatma Metni</a>.</p>
     </form>
   </div>
@@ -582,18 +592,36 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
 }
 
-// teklif formu → e-posta
-var f=document.getElementById('teklif'), ad=f.elements.ad, adErr=document.getElementById('f-ad-err');
-function adHata(msg){adErr.textContent=msg;ad.setAttribute('aria-invalid',msg?'true':'false');}
-ad.addEventListener('input',function(){if(ad.value.trim())adHata('');});
+// teklif formu → Google Apps Script (adres boşsa e-posta uygulamasıyla yedek gönderim)
+var FORM_ENDPOINT='';
+var f=document.getElementById('teklif'), durum=document.getElementById('f-durum'), btn2=f.querySelector('button[type=submit]');
+function hata(el,errId,msg){document.getElementById(errId).textContent=msg;el.setAttribute('aria-invalid',msg?'true':'false');}
+['ad','eposta'].forEach(function(n){var el=f.elements[n];el.addEventListener('input',function(){hata(el,'f-'+n+'-err','');});});
+function v(n){return (f.elements[n].value||'').trim()}
+function mailtoYedek(){
+  var body='Ad soyad: '+v('ad')+'\nE-posta: '+v('eposta')+'\nFirma: '+v('firma')+'\nTelefon: '+v('tel')+'\nHizmet: '+v('hizmet')+'\n\n'+v('mesaj');
+  location.href='mailto:info@servofis.com?subject='+encodeURIComponent('Teklif talebi: '+v('hizmet'))+'&body='+encodeURIComponent(body);
+}
 f.addEventListener('submit',function(e){
   e.preventDefault();
-  var v=function(n){return (f.elements[n].value||'').trim()};
-  if(!v('ad')){adHata('Lütfen adınızı ve soyadınızı yazın.');ad.focus();return;}
-  adHata('');
-  var body='Ad soyad: '+v('ad')+'\nFirma: '+v('firma')+'\nTelefon: '+v('tel')+'\nHizmet: '+v('hizmet')+'\n\n'+v('mesaj');
-  document.getElementById('f-durum').textContent='E-posta uygulamanız açılıyor. Açılmazsa info@servofis.com adresine yazabilirsiniz.';
-  location.href='mailto:info@servofis.com?subject='+encodeURIComponent('Teklif talebi: '+v('hizmet'))+'&body='+encodeURIComponent(body);
+  durum.className='note';durum.textContent='';
+  if(!v('ad')){hata(f.elements.ad,'f-ad-err','Lütfen adınızı ve soyadınızı yazın.');f.elements.ad.focus();return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('eposta'))){hata(f.elements.eposta,'f-eposta-err','Size dönebilmemiz için geçerli bir e-posta adresi yazın.');f.elements.eposta.focus();return;}
+  if(v('web')) return; // bot
+  if(!FORM_ENDPOINT){durum.textContent='E-posta uygulamanız açılıyor. Açılmazsa info@servofis.com adresine yazabilirsiniz.';mailtoYedek();return;}
+  btn2.disabled=true;btn2.textContent='Gönderiliyor…';
+  var data=new URLSearchParams();['ad','eposta','firma','tel','hizmet','mesaj'].forEach(function(n){data.append(n,v(n))});data.append('sayfa',location.href);
+  fetch(FORM_ENDPOINT,{method:'POST',body:data})
+    .then(function(r){return r.json()})
+    .then(function(j){
+      if(!j||!j.ok) throw new Error('kabul edilmedi');
+      f.reset();durum.className='note ok';durum.textContent='Teşekkürler, talebiniz bize ulaştı. Size en kısa sürede e-postayla dönüş yapacağız.';
+    })
+    .catch(function(){
+      durum.className='note fail';
+      durum.innerHTML='Talebiniz gönderilemedi. Lütfen <a href="mailto:info@servofis.com">info@servofis.com</a> adresine doğrudan yazın.';
+    })
+    .finally(function(){btn2.disabled=false;btn2.textContent='Teklif iste';});
 });
 </script>
 </body>
