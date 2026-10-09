@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Servofis · Tesis Hizmetleri</title>
-<meta name="description" content="Servofis: ofis ve tesisler için temizlik, teknik, karşılama, destek ve bitki bakımı hizmetleri. İstanbul.">
+<meta name="description" content="Servofis, İstanbul'da ofis ve tesis temizliği, teknik servis, güvenlik ve destek personeli hizmetlerini tek çatı altında sunan bir tesis hizmetleri firmasıdır.">
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:title" content="Servofis · Tesis Hizmetleri">
@@ -162,6 +162,27 @@ header{background:var(--orman);color:var(--krem);position:sticky;top:0;z-index:2
   .terms{gap:44px}
 }
 
+/* hakkımızda */
+.about{padding:112px 0}
+.about .bars{margin-bottom:28px}
+.eyebrow{margin:0 0 14px;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--kiremit-k)}
+.about h2 em{font-style:italic;font-weight:500;color:var(--kiremit-k)}
+.about .sub{max-width:40em}
+.pillars{list-style:none;margin:64px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.pillars li{background:var(--krem);border-radius:20px;padding:32px;display:grid;gap:14px;align-content:start}
+.pillars .bar{display:block;width:72px;height:10px;border-radius:10px;background:var(--orman)}
+.pillars li:nth-child(2) .bar{background:var(--kiremit)}
+.pillars li:nth-child(3) .bar{background:var(--kehribar)}
+.pillars h3{font-size:clamp(26px,2.4vw,32px);line-height:1.1}
+.pillars p{margin:0;color:var(--muted)}
+.about .closing{margin:56px 0 0;font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);line-height:1.25;max-width:24em}
+@media (max-width:900px){
+  .about{padding:80px 0}
+  .pillars{grid-template-columns:1fr;margin-top:40px;gap:12px}
+  .pillars li{padding:24px 22px}
+  .about .closing{margin-top:40px}
+}
+
 /* iletişim */
 .contact{background:var(--orman);color:var(--krem);padding:112px 0}
 .contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -219,6 +240,7 @@ footer img{height:40px;width:auto}
     <ul id="menu">
       <li><a href="#hizmetler">Hizmetler</a></li>
       <li><a href="#nasil">Nasıl çalışıyoruz</a></li>
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#iletisim" class="cta-s">Teklif iste</a></li>
     </ul>
   </div>
@@ -384,6 +406,21 @@ footer img{height:40px;width:auto}
       <li class="reveal"><span class="bar" aria-hidden="true"></span><h3>Joker personel</h3><p>Personelin izinli veya mazeretli olduğu günlerde ek maliyet olmadan joker personel yönlendirilir.</p></li>
       <li class="reveal"><span class="bar" aria-hidden="true"></span><h3>15 gün içinde değişim</h3><p>Çalışma performansı beğenilmeyen personel 15 gün içinde değiştirilir.</p></li>
     </ol>
+  </div>
+</section>
+
+<section class="about" id="hakkimizda" aria-labelledby="hakkimizda-baslik">
+  <div class="wrap">
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="eyebrow">Hakkımızda</p>
+    <h2 id="hakkimizda-baslik">20 yılı aşkın tecrübe, <em>tek çatı</em> altında.</h2>
+    <p class="sub">Servofis, İstanbul'da ofis ve tesislere yönelik tesis hizmetleri sunan bir firmadır. Ofis temizliği, bina temizliği, teknik servis, güvenlik ve destek personeli hizmetlerini tek çatı altında topluyoruz. Servofis, tesis temizliği ve ofis hizmetlerinde 20 yılı aşkın tecrübenin birleşmesiyle kuruldu.</p>
+    <ul class="pillars">
+      <li class="reveal"><span class="bar" aria-hidden="true"></span><h3>Tesisinizin tüm servisleri</h3><p>Düzenli ofis ve bina temizliğinden bitki bakımına, halı yıkamadan inşaat sonrası ve cam temizliğine kadar tesisinizin ihtiyaç duyduğu hizmetleri tek bir firma üzerinden sunuyoruz.</p></li>
+      <li class="reveal"><span class="bar" aria-hidden="true"></span><h3>Doğru fiyatta, profesyonel hizmet</h3><p>Profesyonel tesis hizmetleri çoğu zaman yüksek maliyetle sunulur. Servofis bu dengeyi değiştirmek için kuruldu: uygun fiyatla, profesyonel kalitede ofis ve tesis hizmeti.</p></li>
+      <li class="reveal"><span class="bar" aria-hidden="true"></span><h3>Müşteri odaklı çalışma</h3><p>Her müşterimiz için bir sorumlu belirlemeyi, hizmeti aynı ekiple vermeyi ve yapılan işleri düzenli olarak raporlamayı hedefliyoruz. Neyin, ne zaman ve nasıl yapıldığını her zaman görebilmeniz için çalışıyoruz.</p></li>
+    </ul>
+    <p class="closing">Amacımız, tesisinizin tüm servislerini güvenle emanet edebileceğiniz bir iş ortağı olmak.</p>
   </div>
 </section>
 
