@@ -593,7 +593,7 @@ if('IntersectionObserver' in window){
 }
 
 // teklif formu → Google Apps Script (adres boşsa e-posta uygulamasıyla yedek gönderim)
-var FORM_ENDPOINT='';
+var FORM_ENDPOINT='https://script.google.com/macros/s/AKfycbyq-IwoAFpdHCZJIOJasUHEKxSEItudgabzxYUAVbPBZ9d_E9pdO9XGgLsSkKLfqbyUFw/exec';
 var f=document.getElementById('teklif'), durum=document.getElementById('f-durum'), btn2=f.querySelector('button[type=submit]');
 function hata(el,errId,msg){document.getElementById(errId).textContent=msg;el.setAttribute('aria-invalid',msg?'true':'false');}
 ['ad','eposta'].forEach(function(n){var el=f.elements[n];el.addEventListener('input',function(){hata(el,'f-'+n+'-err','');});});
