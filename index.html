@@ -241,6 +241,9 @@ form button:active{transform:scale(.98)}
 footer{background:var(--orman-3);color:rgba(243,235,221,.72);padding:36px 0;font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer img{height:40px;width:auto}
+footer .foot-link{color:rgba(243,235,221,.85);display:inline-block;padding:10px 0}
+footer .foot-link:hover{color:var(--kehribar)}
+.note a{color:var(--krem)}
 
 /* hareket: sadece hareket tercihi olanlarda */
 @media (prefers-reduced-motion:no-preference){
@@ -498,6 +501,7 @@ footer img{height:40px;width:auto}
       <div class="field"><label for="f-mesaj">Mesajınız</label><textarea id="f-mesaj" name="mesaj" placeholder="Lokasyon, metrekare, personel sayısı…"></textarea></div>
       <button type="submit">Teklif iste</button>
       <p class="note" id="f-durum" aria-live="polite">Gönder'e bastığınızda e-posta uygulamanız bu bilgilerle açılır.</p>
+      <p class="note">Paylaştığınız bilgiler yalnızca teklif hazırlamak için kullanılır. Ayrıntılar: <a href="/kvkk">KVKK Aydınlatma Metni</a>.</p>
     </form>
   </div>
 </section>
@@ -507,6 +511,7 @@ footer img{height:40px;width:auto}
   <div class="wrap">
     <img src="/assets/servofis_logo_seffaf_koyu.svg" alt="servofis" width="141" height="40" loading="lazy">
     <span>© 2026 Servofis · Tesis Hizmetleri · İstanbul</span>
+    <a href="/kvkk" class="foot-link">KVKK Aydınlatma Metni</a>
   </div>
 </footer>
 
