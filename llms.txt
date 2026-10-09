@@ -1,0 +1,21 @@
+# Servofis
+
+> Servofis, İstanbul'da ofis ve tesislere tesis hizmetleri sunan bir firmadır. Ofis temizliği, teknik bakım, karşılama, destek personeli, iç mekân bitki bakımı ve özel temizlik hizmetlerini tek çatı altında, tek muhatapla verir.
+
+## Hizmetler
+- [Ofis temizliği](https://www.servofis.com/#temizlik): Ofis, ortak alan ve yaşam alanlarının düzenli temizliği; tam zamanlı veya yarı zamanlı personel.
+- [Teknik bakım ve onarım](https://www.servofis.com/#teknik): Elektrik, aydınlatma ve tesisatta rutin bakım ve küçük onarımlar.
+- [Karşılama ve giriş görevlisi](https://www.servofis.com/#karsilama): Bina girişi ve resepsiyonda ziyaretçi karşılama ve yönlendirme.
+- [Ofis destek personeli](https://www.servofis.com/#destek): Çay ve ikram servisi, ofis mutfağı, resepsiyon ve ofis içi işler.
+- [İç mekân bitki bakımı](https://www.servofis.com/#bitki): Ofis bitkilerinin düzenli sulaması ve bakımı.
+- [Özel temizlik](https://www.servofis.com/#ozel-temizlik): İnşaat ve tadilat sonrası, taşınma, cam temizliği, halı yıkama ve dönemsel derin temizlik.
+
+## Çalışma koşulları
+- Çalışma saatlerini müşteri belirler.
+- Personel izinliyken ek maliyet olmadan joker personel yönlendirilir.
+- Performansı beğenilmeyen personel 15 gün içinde değiştirilir.
+
+## İletişim
+- Hizmet bölgesi: İstanbul
+- E-posta: info@servofis.com
+- Teklif: https://www.servofis.com/#iletisim
